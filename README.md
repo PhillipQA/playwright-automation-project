@@ -1,5 +1,4 @@
 # playwright-automation-project
-# playwright-automation-project
 Playwright Test Automation Framework
 
 A Playwright + TypeScript test automation project demonstrating UI test automation, Page Object Model (POM), reusable fixtures, data-driven testing, and API testing.
