@@ -1,16 +1,20 @@
-import { test } from '../fixtures/pages.fixtures';
-import { expect } from '@playwright/test';
+import { test as setup } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
 
+const authFile = 'playwright/.auth/user.json';
 
-test ('standard user can login', async ({ loginPage, inventoryPage }) =>
-{
+setup('authenticate', async ({ page }) => {
 
-await loginPage.goto();
+    const loginPage = new LoginPage(page);
 
-await loginPage.login(
-    'standard_user',
-    'secret_sauce'
-);
+    await loginPage.goto();
 
-await inventoryPage.verifyInventoryUrl();
+    await loginPage.login(
+        'standard_user',
+        'secret_sauce'
+    );
+
+    await page.context().storageState({
+        path: authFile
+    });
 });
