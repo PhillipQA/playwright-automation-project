@@ -1,20 +1,19 @@
-import { test as setup } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { test, expect } from '@playwright/test';
 
-const authFile = 'playwright/.auth/user.json';
+test.use({
+    storageState: {
+        cookies: [],
+        origins: [],
+    },
+});
 
-setup('authenticate', async ({ page }) => {
+test('Valid Login', async ({ page }) => {
 
-    const loginPage = new LoginPage(page);
+    await page.goto('/');
 
-    await loginPage.goto();
+    await page.locator('[data-test="username"]').fill('standard_user');
+    await page.locator('[data-test="password"]').fill('secret_sauce');
+    await page.locator('[data-test="login-button"]').click();
 
-    await loginPage.login(
-        'standard_user',
-        'secret_sauce'
-    );
-
-    await page.context().storageState({
-        path: authFile
-    });
+    await expect(page).toHaveURL(/inventory/);
 });

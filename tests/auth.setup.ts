@@ -1,19 +1,20 @@
-import { test as setup } from '@playwright/test';
+import { test as setup, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
 
 const authFile = 'playwright/.auth/user.json';
 
 setup('authenticate', async ({ page }) => {
 
-    await page.goto('https://www.saucedemo.com/');
+    const loginPage = new LoginPage(page);
 
-    await page.getByRole('textbox', { name: 'Username' })
-        .fill('standard_user');
+    await loginPage.goto();
 
-    await page.getByRole('textbox', { name: 'Password' })
-        .fill('secret_sauce');
+    await loginPage.login(
+        'standard_user',
+        'secret_sauce'
+    );
 
-    await page.getByRole('button', { name: 'Login' })
-        .click();
+    await expect(page).toHaveURL(/inventory/);
 
     await page.context().storageState({
         path: authFile

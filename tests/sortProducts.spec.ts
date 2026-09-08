@@ -1,27 +1,41 @@
 import {test, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPage';
-
-test.beforeEach(async({page})=>
-{
-    const login = new LoginPage(page);
-
-    await login.goto();
-    await login.login('standard_user','secret_sauce')
-});
 
 
-test ('Sort A  to Z', async ({page})=>
-{
-await expect(page).toHaveURL(/inventory/);
+// test.beforeEach(async({page})=>
+// {
+//     // const login = new LoginPage(page);
 
-await page.locator('[data-test="product-sort-container"]').selectOption('az')
-await expect(page.locator('[data-test="active-option"]')).toContainText('Name (A to Z)')
-await expect(page.locator('[data-test="inventory-item-name"]').first()).toContainText('Sauce Labs Backpack')
+//     // await login.goto();
+//     // await login.login('standard_user','secret_sauce')
+
+
+
+// });
+
+
+test('Sort A to Z', async ({ page }) => {
+
+    await page.goto('/inventory.html');
+
+    await expect(page).toHaveURL(/inventory/);
+
+    await page.locator('[data-test="product-sort-container"]')
+        .selectOption('az');
+
+    await expect(
+        page.locator('[data-test="active-option"]')
+    ).toContainText('Name (A to Z)');
+
+    await expect(
+        page.locator('[data-test="inventory-item-name"]').first()
+    ).toContainText('Sauce Labs Backpack');
 
 });
 
 test ('Sort Z to A', async ({page})=>
 {
+
+await page.goto('/inventory.html');
 
 await expect(page).toHaveURL(/inventory/);
 await page.locator('[data-test="product-sort-container"]').selectOption('za')
@@ -33,6 +47,8 @@ await expect(page.locator('[data-test="inventory-item-name"]').first()).toContai
 
 test ('Sort High to Low', async ({page})=>
 {
+await page.goto('/inventory.html');
+
 await expect(page).toHaveURL(/inventory/);
 await page.locator('[data-test="product-sort-container"]').selectOption('hilo')
 await expect(page.locator('[data-test="active-option"]')).toContainText('Price (high to low)')
@@ -42,6 +58,8 @@ await expect(page.locator('[data-test="inventory-item-price"]').first()).toConta
 
 test ('Sort Low to High', async ({page})=>
 {
+
+await page.goto('/inventory.html');
 
 await expect(page).toHaveURL(/inventory/);
 await page.locator('[data-test="product-sort-container"]').selectOption('lohi')
