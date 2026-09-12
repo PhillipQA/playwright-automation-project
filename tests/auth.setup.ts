@@ -14,6 +14,7 @@ setup('authenticate', async ({ page }) => {
         'secret_sauce'
     );
 
+    await expect(page).toHaveURL(/inventory/);
 
     await page.context().storageState({
         path: authFile

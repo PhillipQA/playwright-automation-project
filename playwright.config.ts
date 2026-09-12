@@ -18,37 +18,90 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
 
-  /* Reporter to use */
+  /* Reporter */
   reporter: 'html',
 
-  /* Shared settings for all projects */
+  /* Shared settings */
   use: {
     baseURL: 'https://www.saucedemo.com',
     trace: 'on-first-retry',
   },
 
-  /* Configure projects */
+  /* Projects */
   projects: [
 
-    /* Authentication setup */
+    // --------------------------------
+    // Authentication setup
+    // --------------------------------
     {
       name: 'setup',
       testMatch: /.*auth\.setup\.ts/,
     },
 
-    /* Tests that require a logged-in user */
+    // --------------------------------
+    // Authenticated - Chromium
+    // --------------------------------
     {
-      name: 'authenticated',
+      name: 'authenticated-chromium',
+
+      testMatch: [
+        /.*(?:sortProducts|Addtocart|Checkout|CheckOutInfo|Complete order|removeProduct)\.spec\.ts$/i,
+      ],
+
       use: {
         ...devices['Desktop Chrome'],
         storageState: 'playwright/.auth/user.json',
       },
+
       dependencies: ['setup'],
     },
 
-    /* Tests that must start logged out */
+    // --------------------------------
+    // Authenticated - Firefox
+    // --------------------------------
+    {
+      name: 'authenticated-firefox',
+
+      testMatch: [
+        /.*(?:sortProducts|Addtocart|Checkout|CheckOutInfo|Complete order|removeProduct)\.spec\.ts$/i,
+      ],
+
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: 'playwright/.auth/user.json',
+      },
+
+      dependencies: ['setup'],
+    },
+
+    // --------------------------------
+    // Authenticated - WebKit
+    // --------------------------------
+    {
+      name: 'authenticated-webkit',
+
+      testMatch: [
+        /.*(?:sortProducts|Addtocart|Checkout|CheckOutInfo|Complete order|removeProduct)\.spec\.ts$/i,
+      ],
+
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: 'playwright/.auth/user.json',
+      },
+
+      dependencies: ['setup'],
+    },
+
+    // --------------------------------
+    // Unauthenticated
+    // --------------------------------
     {
       name: 'unauthenticated',
+
+      testMatch: [
+        /.*(?:login|invalidLogin|Loginwith_locked_user|Datadriven)\.spec\.ts$/i,
+      ],
+
       use: {
         ...devices['Desktop Chrome'],
         storageState: {
@@ -58,27 +111,17 @@ export default defineConfig({
       },
     },
 
-    /* Firefox */
+    // --------------------------------
+    // API
+    // --------------------------------
     {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
+      name: 'api',
 
-    /* WebKit / Safari */
-    {
-      name: 'webkit',
+      testMatch: /.*\.api\.spec\.ts/,
+
       use: {
-        ...devices['Desktop Safari'],
+        baseURL: 'https://jsonplaceholder.typicode.com',
       },
     },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

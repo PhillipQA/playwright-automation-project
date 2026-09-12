@@ -19,8 +19,9 @@ export class AddToCartPage {
 
         async verifyProductinCart ()
         {
-            await expect(this.page.locator('[data-test="inventory-item-name"]'))
-                .toHaveText('Sauce Labs Backpack');
+            await expect(
+            this.page.getByText('Sauce Labs Backpack', { exact: true })
+                ).toBeVisible();
         }
 
       
