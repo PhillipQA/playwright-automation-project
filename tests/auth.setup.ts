@@ -1,6 +1,6 @@
 import { test as setup, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import 'dotenv/config';
+import { env } from '../utils/env';
 
 const authFile = 'playwright/.auth/user.json';
 
@@ -10,8 +10,8 @@ setup('authenticate', async ({ page }) => {
     await loginPage.goto();
 
     await loginPage.login(
-        process.env.SAUCE_USERNAME!,
-        process.env.SAUCE_PASSWORD!
+        env.username,
+        env.password
     );
 
     await expect(page).toHaveURL(/inventory/);
