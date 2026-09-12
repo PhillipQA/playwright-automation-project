@@ -1,16 +1,15 @@
 import { test } from '../fixtures/pages.fixtures';
 
+test.use({
+    storageState: {
+        cookies: [],
+        origins: [],
+    },
+});
+
 
 test ('Order Completed', async ({page, loginPage, inventoryPage, addtocart, checkoutdetails, processorder}) =>
 {
-
-await loginPage.goto();
-
-await loginPage.login(
-    'standard_user',
-    'secret_sauce'
-);
-
 await inventoryPage.verifyInventoryUrl();
 await inventoryPage.verifyBackpackVisible();
 await inventoryPage.AddProductToCart();
