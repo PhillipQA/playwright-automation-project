@@ -5,10 +5,10 @@ export class LoginPage {
     constructor(private page: Page) {}
 
     async goto() {
-        await this.page.goto('https://www.saucedemo.com/',
-            { waitUntil: 'domcontentloaded' }
-        );
-    }
+    await this.page.goto('/', {
+        waitUntil: 'domcontentloaded'
+    });
+}
 
     async login(username: string, password: string) {
 

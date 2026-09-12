@@ -1,4 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+dotenv.config({
+  path: path.resolve(__dirname, '.env'),
+});
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -23,9 +29,9 @@ export default defineConfig({
 
   /* Shared settings */
   use: {
-    baseURL: 'https://www.saucedemo.com',
-    trace: 'on-first-retry',
-  },
+  baseURL: process.env.BASE_URL,
+  trace: 'on-first-retry',
+},
 
   /* Projects */
   projects: [
