@@ -31,15 +31,17 @@ export class CheckOutDetails {
     }
 
     async ClickContinue()
-    {
-        await this.page.locator('[data-test="continue"]').click();
-    }
+{
+    await this.page.locator('[data-test="continue"]').click();
+
+    await expect(this.page).toHaveURL(/checkout-step-two/);
+}
 
     async VerifyProductOnCart()
-    {
-        await expect(this.page).toHaveURL(/checkout-step-two/);
-        await expect(this.page.locator('[data-test="inventory-item-name"]')).toHaveText('Sauce Labs Backpack');
-    }
+{
+    await expect(this.page.locator('[data-test="inventory-item-name"]'))
+        .toHaveText('Sauce Labs Backpack');
+}
 
     async ProceedToOrderProduct()
     {

@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+  "test": "playwright test",
+  "test:headed": "playwright test --headed",
+  "test:api": "playwright test --project=api",
+  "test:auth": "playwright test --project=authenticated-chromium",
+  "test:unauth": "playwright test --project=unauthenticated",
+  "test:smoke": "playwright test --grep @smoke"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
