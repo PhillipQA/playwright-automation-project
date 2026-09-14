@@ -3,12 +3,12 @@ import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { AddToCartPage } from '../pages/AddToCartPage';
 import { CheckOutDetails } from '../pages/CheckOutDetails';
-import { expect } from '@playwright/test';
 import {ProcessOrder} from '../pages/ProcessOrder';
 
 type Fixtures = {
     loginPage: LoginPage;
     inventoryPage: InventoryPage;
+    inventory: InventoryPage;
     addtocart: AddToCartPage;
     checkoutdetails: CheckOutDetails;
     processorder: ProcessOrder;
@@ -16,10 +16,14 @@ type Fixtures = {
 
 export const test = base.extend<Fixtures>({
     loginPage: async ({ page }, use) => {
-        await use(new LoginPage(page));
+    await use(new LoginPage(page));
     },
     inventoryPage: async ({ page }, use) => {
         await use(new InventoryPage(page));
+    },
+    inventory: async ({ inventoryPage, page }, use) => {
+    await page.goto('/inventory.html');
+    await use(inventoryPage);
     },
     addtocart: async ({ page }, use) => {
         await use(new AddToCartPage(page));

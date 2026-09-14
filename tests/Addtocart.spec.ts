@@ -1,23 +1,12 @@
 import { test } from '../fixtures/pages.fixtures';
-import { AddToCartPage } from '../pages/AddToCartPage';
 
 
-test ('User Can Add Product to Cart @smoke @regression', async ({ page, loginPage, inventoryPage }) =>
+test ('User Can Add Product to Cart @smoke @regression', async ({  inventory, addtocart }) =>
 {
-    const addtocart = new AddToCartPage(page);
-
-
-await loginPage.goto();
-
-await loginPage.login(
-    'standard_user',
-    'secret_sauce'
-);
-
-await inventoryPage.verifyInventoryUrl();
-await inventoryPage.verifyBackpackVisible();
-await inventoryPage.AddProductToCart();
-await inventoryPage.verifyBadge();
+await inventory.verifyInventoryUrl();
+await inventory.verifyBackpackVisible();
+await inventory.AddProductToCart();
+await inventory.verifyBadge();
 
 await addtocart.navigateToCart();
 await addtocart.verifyProductinCart();

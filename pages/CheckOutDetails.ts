@@ -10,25 +10,17 @@ export class CheckOutDetails {
         await expect(this.page).toHaveURL(/checkout-step-one/);
     }
 
+    async fillCheckoutInformation(
+    firstName: string,
+    lastName: string,
+    postalCode: string
+) {
+    await this.page.locator('[data-test="firstName"]').fill(firstName);
 
+    await this.page.locator('[data-test="lastName"]').fill(lastName);
 
-    async InputFirstName()
-    {
-        await this.page.locator('[data-test="firstName"]')
-            .fill('test');
-    }
-
-    async InputLastName()
-    {
-        await this.page.locator('[data-test="lastName"]')
-            .fill('last')
-    }
-
-    async InputPostalCode()
-    {
-        await this.page.locator('[data-test="postalCode"]')
-            .fill('1234');
-    }
+    await this.page.locator('[data-test="postalCode"]').fill(postalCode);
+}
 
     async ClickContinue()
 {

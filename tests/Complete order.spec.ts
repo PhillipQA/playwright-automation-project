@@ -1,4 +1,5 @@
 import { test } from '../fixtures/pages.fixtures';
+import { checkoutData } from '../data/checkoutData';
 
 test('Order Completed @smoke @regression', async ({
     page,
@@ -22,9 +23,16 @@ await addtocart.verifyURL();
 
 await checkoutdetails.CheckOut();
     
-await checkoutdetails.InputFirstName();
-await checkoutdetails.InputLastName();
-await checkoutdetails.InputPostalCode();
+// await checkoutdetails.InputFirstName();
+// await checkoutdetails.InputLastName();
+// await checkoutdetails.InputPostalCode();
+
+await checkoutdetails.fillCheckoutInformation(
+    checkoutData.firstName,
+    checkoutData.lastName,
+    checkoutData.postalCode
+);
+
 await checkoutdetails.ClickContinue();
 await checkoutdetails.VerifyProductOnCart();
 await checkoutdetails.ProceedToOrderProduct();
