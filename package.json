@@ -9,7 +9,8 @@
   "test:api": "playwright test --project=api",
   "test:auth": "playwright test --project=authenticated-chromium",
   "test:unauth": "playwright test --project=unauthenticated",
-  "test:smoke": "playwright test --grep @smoke"
+  "test:smoke": "playwright test --grep @smoke",
+  "test:regression": "playwright test --grep @regression"
 },
   "keywords": [],
   "author": "",

@@ -4,7 +4,7 @@ import { loginData } from '../data/logindata';
 
 for (const data of loginData) {
 
-    test(`Login validation Test: ${data.error}`, async ({ page }) => {
+    test(`Login validation Test: ${data.error} @regression`, async ({ page }) => {
         const loginPage = new LoginPage(page);
 await loginPage.goto();
 await loginPage.login(

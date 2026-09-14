@@ -11,7 +11,7 @@ test.beforeEach(async({page})=>
     await login.login('standard_user','secret_sauce')
 });
 
-test ('Validate product can be removed', async ({page})=>
+test ('Validate product can be removed @regression', async ({page})=>
 {
     const product = new RemoveProducts(page);
 

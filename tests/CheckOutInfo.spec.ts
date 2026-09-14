@@ -3,7 +3,7 @@ import { test } from '../fixtures/pages.fixtures';
 
 import { CheckOutDetails } from '../pages/CheckOutDetails';
 
-test ('User can Checkout Order', async ({page, loginPage, inventoryPage, addtocart, checkoutdetails}) =>
+test ('User can Checkout Order @regression', async ({page, loginPage, inventoryPage, addtocart, checkoutdetails}) =>
 {
 
     const checkout = new CheckOutDetails(page);

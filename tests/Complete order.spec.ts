@@ -1,6 +1,6 @@
 import { test } from '../fixtures/pages.fixtures';
 
-test('Order Completed @smoke', async ({
+test('Order Completed @smoke @regression', async ({
     page,
     loginPage,
     inventoryPage,

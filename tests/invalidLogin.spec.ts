@@ -12,7 +12,7 @@ test.beforeEach(async ({page})=>
 })
 
 
-test ('No Password', async ({page})=>
+test ('No Password @regression', async ({page})=>
 {
     const invaliduser = new invalidUser(page);
 
@@ -25,7 +25,7 @@ test ('No Password', async ({page})=>
 
 });
 
-test ('No UserName', async ({page})=>
+test ('No UserName @regression', async ({page})=>
 {
     const invaliduser = new invalidUser(page);
     
@@ -38,7 +38,7 @@ test ('No UserName', async ({page})=>
 
 });
 
-test ('Wrong UserName', async ({page})=>
+test ('Wrong UserName @regression', async ({page})=>
 {
     const invaliduser = new invalidUser(page);
    
@@ -50,7 +50,7 @@ test ('Wrong UserName', async ({page})=>
 
 });
 
-test ('Wrong Password', async ({page})=>
+test ('Wrong Password @regression', async ({page})=>
 {
     const invaliduser = new invalidUser(page);
 

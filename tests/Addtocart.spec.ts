@@ -2,7 +2,7 @@ import { test } from '../fixtures/pages.fixtures';
 import { AddToCartPage } from '../pages/AddToCartPage';
 
 
-test ('User Can Add Product to Cart @smoke', async ({ page, loginPage, inventoryPage }) =>
+test ('User Can Add Product to Cart @smoke @regression', async ({ page, loginPage, inventoryPage }) =>
 {
     const addtocart = new AddToCartPage(page);
 
