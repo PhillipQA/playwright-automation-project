@@ -4,6 +4,7 @@ import { InventoryPage } from '../pages/InventoryPage';
 import { AddToCartPage } from '../pages/AddToCartPage';
 import { CheckOutDetails } from '../pages/CheckOutDetails';
 import {ProcessOrder} from '../pages/ProcessOrder';
+import { RemoveProducts } from '../pages/RemoveProducts';
 
 type Fixtures = {
     loginPage: LoginPage;
@@ -12,6 +13,7 @@ type Fixtures = {
     addtocart: AddToCartPage;
     checkoutdetails: CheckOutDetails;
     processorder: ProcessOrder;
+    removeproducts: RemoveProducts;
 };
 
 export const test = base.extend<Fixtures>({
@@ -33,5 +35,9 @@ export const test = base.extend<Fixtures>({
     },
     processorder: async ({ page }, use) => {
         await use(new ProcessOrder(page));
+    },
+    removeproducts: async ({ page }, use) => {
+        await use(new RemoveProducts(page));
     }
+    
 });

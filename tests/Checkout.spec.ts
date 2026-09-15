@@ -1,29 +1,25 @@
-
 import { test } from '../fixtures/pages.fixtures';
 
-import { CheckOutDetails } from '../pages/CheckOutDetails';
+test('User can begin Checkout Process', async ({
+    inventory,
+    addtocart,
+    checkoutdetails
+}) => {
 
-test ('User Can Add Product to Cart', async ({page, loginPage, inventoryPage, addtocart, checkoutdetails}) =>
-{
+    await inventory.verifyInventoryUrl();
 
-    const checkout = new CheckOutDetails(page);
+    await inventory.verifyBackpackVisible();
 
-await loginPage.goto();
+    await inventory.AddProductToCart();
 
-await loginPage.login(
-    'standard_user',
-    'secret_sauce'
-);
+    await inventory.verifyBadge();
 
-await inventoryPage.verifyInventoryUrl();
-await inventoryPage.verifyBackpackVisible();
-await inventoryPage.AddProductToCart();
-await inventoryPage.verifyBadge();
+    await addtocart.navigateToCart();
 
-await addtocart.navigateToCart();
-await addtocart.verifyProductinCart();
-await addtocart.verifyURL();
+    await addtocart.verifyProductinCart();
 
-await checkout.CheckOut();
-    
+    await addtocart.verifyURL();
+
+    await checkoutdetails.CheckOut();
+
 });

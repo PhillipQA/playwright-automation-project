@@ -2,20 +2,16 @@ import { test } from '../fixtures/pages.fixtures';
 import { checkoutData } from '../data/checkoutData';
 
 test('Order Completed @smoke @regression', async ({
-    page,
-    loginPage,
-    inventoryPage,
+    inventory,
     addtocart,
     checkoutdetails,
     processorder
 }) => 
 {
 
-await page.goto('/inventory.html');
-await inventoryPage.verifyInventoryUrl();
-await inventoryPage.verifyBackpackVisible();
-await inventoryPage.AddProductToCart();
-await inventoryPage.verifyBadge();
+await inventory.verifyBackpackVisible();
+await inventory.AddProductToCart();
+await inventory.verifyBadge();
 
 await addtocart.navigateToCart();
 await addtocart.verifyProductinCart();
@@ -23,10 +19,6 @@ await addtocart.verifyURL();
 
 await checkoutdetails.CheckOut();
     
-// await checkoutdetails.InputFirstName();
-// await checkoutdetails.InputLastName();
-// await checkoutdetails.InputPostalCode();
-
 await checkoutdetails.fillCheckoutInformation(
     checkoutData.firstName,
     checkoutData.lastName,
