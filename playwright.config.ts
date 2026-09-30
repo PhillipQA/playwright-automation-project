@@ -20,7 +20,13 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   /* Reporter */
-  reporter: 'html',
+  reporter: process.env.PORTFOLIO_DEMO === 'true'
+    ? [
+        ['line'],
+        ['html', { outputFolder: 'playwright-report', open: 'never' }],
+        ['./reporters/portfolio-reporter.ts'],
+      ]
+    : [['html', { open: 'never' }]],
 
   /* Shared settings */
   use: {

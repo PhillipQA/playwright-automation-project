@@ -49,9 +49,13 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=line,html
+        run: npx playwright test
         env:
           CI: "true"
+          PORTFOLIO_DEMO: "true"
+          PORTFOLIO_RUNNER_URL: ${{ vars.PORTFOLIO_RUNNER_URL }}
+          PORTFOLIO_TELEMETRY_TOKEN: ${{ secrets.PORTFOLIO_TELEMETRY_TOKEN }}
+          PORTFOLIO_RUN_ID: ${{ github.run_id }}
           BASE_URL: "https://www.saucedemo.com"
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
