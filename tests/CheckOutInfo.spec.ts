@@ -26,9 +26,11 @@ await addtocart.verifyURL();
 
 await checkout.CheckOut();
     
-await checkout.InputFirstName();
-await checkout.InputLastName();
-await checkout.InputPostalCode();
+await checkout.fillCheckoutInformation(
+        'Phillip',
+        'Cabalo',
+        '6500'
+    );
 await checkout.ClickContinue();
 await checkout.VerifyProductOnCart();
 await checkout.ProceedToOrderProduct();
