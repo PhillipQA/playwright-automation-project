@@ -53,6 +53,8 @@ jobs:
         env:
           CI: "true"
           BASE_URL: ${{ vars.BASE_URL }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_PASSWORD: ${{ secrets.SAUCE_PASSWORD }}
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}
