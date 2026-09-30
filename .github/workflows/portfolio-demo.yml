@@ -8,7 +8,6 @@ on:
         required: false
         default: "portfolio"
 
-
 permissions:
   contents: read
 
@@ -53,6 +52,7 @@ jobs:
         run: npx playwright test --reporter=line,html
         env:
           CI: "true"
+          BASE_URL: ${{ vars.BASE_URL }}
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}
